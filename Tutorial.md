@@ -1,4 +1,4 @@
-![](bash_logo.png)
+![](figures/bash_logo.png)
 
 [TBI]: <> (This is a comment)
 
@@ -18,7 +18,7 @@
 
 When it comes to the operating systems nowadays, in high-energy experimental physics we mostly rely on Linux. That being said, as an experimental physicist you are sooner or later faced with the following situation: You have turned on your computer and launched the terminal...
  
-![](terminal_4.2.png)
+![](figures/terminal_4.2.png)
 
 ... and what now?? 
 
@@ -200,7 +200,7 @@ help echo
 ```
 You shall get as an output something like:
 
-![](help_echo_0b.png)
+![](figures/help_echo.png)
 
 I.e.  **help** command gives you a complete description of any built-in **Bash** command or **Bash** key-word. 
 
@@ -212,7 +212,7 @@ man date
 
 The first page of a rather lengthy output could look like:
 
-![](man_date_0b.png)
+![](figures/man_date.png)
  
 As you can see, even simple commands, like **date**, can have an extensive documentation and a lot of options. It is impossible to memorize all options for all commands, therefore usage of **help** and **man** is needed almost on a daily basis. 
 
