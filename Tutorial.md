@@ -695,7 +695,7 @@ Since when you launch a new terminal the file ```${HOME}/.bashrc``` is being sou
 
 
 
-### 6. Using an arbitrary executable as **Linux/Bash** command <a name="arbitrary_executable"></a>
+### 7. Using an arbitrary executable as **Linux/Bash** command <a name="arbitrary_executable"></a>
 
 
 #### A) Setting file permissions <a name="permissions"></a>
