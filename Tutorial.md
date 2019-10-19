@@ -30,21 +30,21 @@ You can start clicking with the mouse over the terminal, but quickly you will re
 
 What is that secret built-in language available in the terminal? This lecture is all about shedding light on its existence...
 
-Loosely speaking, **shell** is the generic name of any program that user employs to type commands in the terminal (a.k.a. text window).  Example **shells**:
+Loosely speaking, **shell** is the generic name of any program that the user employs to type commands in the terminal (a.k.a. text window).  Example **shells**:
 
 * sh 
 * bash
 * ksh
 * csh
+* zsh
 * fish
 
-To get the list of **shells** available on your computer, type in the terminal:
+The list of **shells** available on your computer is stored in the file _/etc/shells_. In order to see its content,  use the **Linux** command **cat** which reads and prints on the screen the content of textual files, i.e. type in the terminal:
 
 ```linux
 cat /etc/shells 
 ```
-
-The output of that command could look like:
+and press 'Enter'. The output of that command could look like:
 
 ```bash
 /etc/shells: valid login shells
@@ -56,14 +56,14 @@ The output of that command could look like:
 /usr/bin/fish
 ```
 
-How to select your favorite **shell**? It's simple, just type its name in the terminal and press 'Enter'! E.g. if you want to use **Bash** as your working **shell**, just type in the terminal:
+How to select your favorite **shell** from the above list? It's simple, just type its name in the terminal and press 'Enter'! E.g. if you want to use **Bash** as your working **shell**, just type in the terminal:
 
 ```linux
 bash
 ```
-and press 'Enter' --- now you are in the **Bash** wonderland! Since that is by far the most popular **shell** nowadays, this tutorial will focus exclusively on its concepts, syntax and commands. But no worries, at least conceptually a lot of subjects covered in this tutorial apply also to other **shells**! 
+and press 'Enter' --- now you are in the **Bash** wonderland! Since that is by far the most popular **Linux** **shell** nowadays (in fact it's the default **shell** on most **Linux** distributions), this tutorial will focus exclusively on its concepts, syntax and commands. But no worries, at least conceptually a lot of subjects covered in this tutorial apply also to other **shells**! 
 
-In this lecture we will cover only the  **Bash**  essentials, i.e. we will make you going, but how far you want to go eventually, it depends on your personal determination and time investment.  Few references for further reading:
+In this lecture we will cover only the  **Bash**  essentials, i.e. we will make you going, but how far you want to go eventually, it depends on your determination and time investment.  Few references for further reading can be found in the preamble of this tutorial.
 
 Traditionally, the first program people write when learning a new programming language is the so-called _"Hello World"_ example. Let's keep up with this tradition and type in the terminal:
 
@@ -77,7 +77,7 @@ This will output in the terminal:
 Hello World
 ```
 
-i.e. **Bash** has echoed back the text you have typed in the terminal as an _argument_ to **echo** command. Let's move on!
+i.e. **Bash** has echoed back the text you have typed in the terminal as an _argument_ of **echo** command. Let's move on!
 
 
 
@@ -88,9 +88,9 @@ When you open a terminal, your local environment is defined via some command nam
 
 #### A) Commands <a name="commands"></a>
 
-We have already seen how one built-in **Bash** command works, namely **echo**. In the same spirit, we can use in the terminal any other **Linux** command, not necessarily the built-in shell command.
+We have already seen how one built-in **Bash** command works, namely **echo**. In the same spirit, we can use in the terminal any other **Linux** command, not necessarily the built-in **shell** command.
 
-**Example:** What is the current time? Just type in the terminal **date**  command and press 'Enter'
+**Example:** What is the current time? Just type in the terminal command **date**  and press 'Enter':
 
 ```linux
 date
@@ -112,9 +112,9 @@ This will output in the terminal the different stream:
 Mo 29. Apr 08:30:19 UTC 2019
 ```
 
-By passing certain flag, we have instructed command **date** to change its default behaviour. In the above example, the flag **-u** caused **date** command to report time in Coordinated Universal Time format (UTC), instead of Central European Summer Time (CEST) time zone (which is default). 
+By passing a certain flag, we have instructed command **date** to change its default behaviour. In the above example, the flag **-u** caused **date** command to report time in Coordinated Universal Time format (UTC), instead of Central European Summer Time (CEST) time zone (which is the default). 
 
-As another example, we have already seen how we can use **cat** command to view the content of file, when inquiring which shells are available on the computer. We can pass to command **cat** as arguments more files to read in one go, i.e. we can execute the same command in one go on multiple arguments:
+As another example, we have already seen how we can use **cat** command to view the content of a file, when inquiring which shells are available on the computer. We can pass to command **cat** as arguments more files to read in one go, i.e. we can execute the same command in one go on multiple arguments:
 
 ```linux
 cat /etc/shells /etc/hostname
@@ -135,7 +135,7 @@ transfer.ktas.ph.tum.de
 
 Note the new entry in the last line, which is the content of file _/etc/hostname_ . 
 
-We can, of course, combine options and arguments when invoking a command: 
+We can, of course, combine both options (flags) and arguments when invoking a command: 
 
 ```linux
 cat -n /etc/shells 
@@ -152,17 +152,16 @@ The flag **-n** causes command **cat** to enumerate all lines in the printout.
 
 Based on these simple examples, we now establish the following general statements about commands. In general, all **Bash** and **Linux** commands are conceptually implemented in the same way --- let us now discuss what is conceptually always the same in their implementation and usage. 
 
-Generically, for most cases of interest, we are executing commands in the terminal in the following way:
+Generically, and in the most important cases of interest, we are executing commands in the terminal in the following way:
 
 ```linux
 <command-name> <option(s)> <argument(s)>
 ```
-
-This is the right moment to stress the importance and profound meaning of empty character: Empty character is the default input field separator in **Linux** world. If you misuse the empty character, a lot of your input in the terminal will be completely incomprehensible to shell, and **Linux** commands in general.  In the above generic example, empty character separates the three items, which conceptually have a completely different meaning. As the very first step, after you have typed the input in the terminal and pressed 'Enter', shell splits your input into tokens that are separated (by default, and in a bit simplified picture) with one or more empty characters. Then, it checks weather the very first token is some known **Linux** command, **Bash** key-word, etc.
+where we use notation ```< ... >``` just as a placeholder. This is the right moment to stress the importance and profound meaning of empty character in **Bash** and **Linux**: Empty character is the default input field separator. If you misuse the empty character, a lot of your input in the terminal will be completely incomprehensible to **shell**, and any **Linux** commands in general.  In the above generic example, empty character separates the three items, which conceptually have a completely different meaning. As the very first step, after you have typed the input in the terminal and pressed 'Enter', **Bash** splits your input into tokens that are separated (by default, and in a bit simplified picture) with one or more empty characters. Then, it checks whether the very first token is some known **Bash** or **Linux** command, **Bash** key-word, etc.
 
 Let's look at them one by one...
 
-* **<command-name\>** : Whatever you type first in the terminal, i.e. before the next empty character is being encountered on terminal input, **Bash** is trying to interpret as some known **Linux** command, **Bash** key-word, etc. In general, _command-name_ can stand for one of the following items:
+* **<command-name\>** : Whatever you type first in the terminal, i.e. before the next empty character is being encountered on terminal input, **Bash** is trying to interpret as some known **Linux** command, **Bash** key-word, etc. In general, **<command-name\>** can stand for one of the following items:
 
 	1) **Linux** command (i.e. system-wide executable or binary) --- example:  **cat**
 	2) **Bash**  built-in command --- example: **echo**
@@ -174,7 +173,7 @@ Let's look at them one by one...
 * **<option(s)\>** : Options (or flags) are used to modify the default behaviour of command. Options are indicated either with:
 
 	1) **-** (single dash) followed by single character(s), or
-	2)  **-\-** (two consecutive dashes) followed by more descriptive explanation on what needs to be modified.
+	2)  **-\-** (two consecutive dashes) followed by a more descriptive explanation of what needs to be modified.
 
 For instance, the frequently used flags **-a** and **-\-all** are synonyms, in a sense that they modify the default behaviour of command in exactly the same way. The first version is easier to type, but the second one is easier to memorize. Example for **date** command:
 
@@ -197,7 +196,7 @@ For **Linux**  commands, we need to have a look a the corresponding **man** (sho
 man <command-name>
 ```
 
-Example 1: To see which options are available for built-in **Bash** command **echo**, use:
+**Example 1:** To see which options are available for built-in **Bash** command **echo**, use:
 
 ```bash
 help echo
@@ -208,7 +207,7 @@ You shall get as an output something like:
 
 I.e.  **help** command gives you a complete description of any built-in **Bash** command or **Bash** key-word. 
 
-Example 2: To see which options are available for **Linux** command  **date**, use:
+**Example 2:** To see which options are available for **Linux** command  **date**, use:
 
 ```linux
 man date
@@ -226,25 +225,33 @@ As you can see, even simple commands, like **date**, can have an extensive docum
 touch file_1.log
 ```
 
-But we could create plenty of empty files with **touch** command in one go, not one by one, e.g.
+In order to list all files and subdirectories in the current working directory, use **ls** command, i.e. 
+
+```linux
+ls
+```
+The output after this example is:
+```linux
+file_1.log
+```
+
+For the more verbose printout (e.g. showing also the file size, etc.) use the flags **-a** and **-l** for **ls** command in the construct like ```ls -al``` (check the _man pages_ of **ls** command  for the meaning of these flags, and for other available options to modify the default behavior of this command). 
+
+In the case we want to use **touch** command to create multiple empty files, it would be extremely annoying if we would need to call this command for each file separately. Instead, we can create plenty of empty files with **touch** command in one go, and not one by one, e.g.
 
 ```linux
 touch file_1.log file_2.log file_3.log file_4.log
+ls
 ```
 
-Important remark: Since empty character is an input field separator, never use it as a part of file or directory name! In such a context, always replace it with underscore "_" or any other character which doesn't have special meaning. For instance:
+**Important remark:** Since the empty character is an input field separator, never use it as a part of the file or directory name! In such a context, always replace it with underscore "_" or any other character which doesn't have special meaning. For instance:
 
 ```linux
 touch file 1.log
 ```
-would literally create two empty files, the first one named _file_, and the second one named _1.log_ . If you apply **touch** command on an already existing file, only the time-stamp of that file will be updated to the current time, its content remains exactly the same. 
+would literally create two files, the first one named _file_, and the second one named _1.log_ . As a side remark, if you apply **touch** command on an already existing file, only the creation time-stamp of that file will be updated to the current time, while the file content remains exactly the same (therefore the name **touch**). 
 
-In order to see or list all files and subdirectories in the current working directory, use **ls** command, i.e. 
-
-```linux
-ls -al
-```
-For the meaning of flags **-a** and **-l** check the _man pages_ of **ls** command.  In the same spirit, we can create multiple directories in one go, with **mkdir** command, e.g. 
+In the same spirit, we can create multiple directories in one go, with **mkdir** command, e.g. 
 
 ```linux
 mkdir subdir_1 subdir_2 subdir_3
@@ -254,23 +261,23 @@ will make 3 new subdirectories in your current working directory (check again by
 By now we have been using only the already existing either **Bash** or **Linux** commands. The simplest way to create your own command, with a rather limited functionality and flexibility but nevertheless quite convenient, is to use **Bash** built-in command **alias**.  For instance, if you are bored to type something lengthy again and again in the terminal, you can introduce shortcut for it, by using the **Bash** built-in command **alias**. For instance, you can abbreviate the lengthy input
 
 ```bash
-echo "Welcome to the lecture about Linux, Bash and ROOT"
+echo "Welcome to the Bash tutorial"
 ```
-into the simple new command ```Hi```, by creating an alias for it:
+into the simple new command ```Hi```, by creating an alias for it with the following definition:
 
 ```
-alias Hi='echo "Welcome to the lecture about Linux, Bash and ROOT"'
+alias Hi='echo "Welcome to the Bash tutorial"'
 ```
 Now this input in the terminal shall work as well:
 
 ```bash
 Hi
 ```
-and the output in the terminal shall be
+and the output in the terminal shall be:
 ```bash
-Welcome to the lecture about Linux, Bash and ROOT
+Welcome to the Bash tutorial
 ```
-Quite frequently, aliases are used in the following context:  If you want to connect from your desktop machine to some other computer, e.g.  _lxplus_ at CERN, you need to type in the terminal something like:
+Quite frequently, **Bash** aliases are used in the following context:  If you want to connect from your desktop machine to some other computer, e.g.  _lxplus_ at CERN, you need to type in the terminal something like
 
 ```linux
 ssh -Y abilandz@lxplus.cern.ch
@@ -281,14 +288,14 @@ But do you really want to type that again and again each time you want to connec
 ```bash
 alias lx='ssh -Y abilandz@lxplus.cern.ch'
 ```
-Here basically you have defined an abbreviation (or alias, or shortcut) for lengthy command input, and in this case you have named it **lx**. Now it suffices only to type in the terminal 
+Here basically you have defined an abbreviation (or alias, or shortcut) for lengthy command input, and in this case, you have named it **lx**. Now it suffices only to type in the terminal 
 
 ```bash
 lx
 ```
 and you will be connecting to _lxplus_ at CERN with much less effort and time investment. 
 
-Another typical use case of aliases is to prevent command name typos. For instance, if you realize that too frequently instead of **ls** you have a typo **sl**, which does nothing except producing an error message, you can simply define the new alias for it:
+Another typical use case of aliases is to prevent command name typos. For instance, if you realize that too frequently instead of **ls** you have typed in the terminal **sl**, which does nothing except producing an error message, you can simply define a new alias for it:
 ```bash
 alias sl=ls
 ```
@@ -304,7 +311,7 @@ and all of their definitions will show up! If you want to see what is the defini
 ```bash
 alias <alias-name>
 ```
-The alias definition can be removed with **Bash** built-in command  **unalias**, e.g.:
+The definition of some alias can be removed with **Bash** built-in command  **unalias**, e.g.:
 
 ```bash
 unalias <alias-name> 
@@ -312,8 +319,8 @@ unalias <alias-name>
 
 Aliases are definitely a nice feature, but do not overdo it, because:
 
-* When you move to another machine your personal aliases are not available there by default;
-* Aliases can overwrite the name of the already existing **Linux** or **Bash** command --- aliases will have the precedence;
+* When you move to another machine your personal definitions for aliases are not available there by default;
+* Aliases can overwrite the name of the already existing **Linux** or **Bash** command --- aliases have the higher precedence;
 * Aliases cannot accept options or arguments, like regular commands. 
 
 Aliases are literally shortcuts for commands or whatever else, defined for convenience to save typing. Whatever you have defined an alias to stand for, **Bash** with simply inline or replace in the terminal the alias name with its content, and then execute that content --- nothing more than that! 
