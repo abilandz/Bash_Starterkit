@@ -330,21 +330,21 @@ Aliases are literally shortcuts for commands or whatever else, defined for conve
 
 #### B) Variables <a name="variables"></a>
 
-Just as any other programming languages, **Bash** also supports a notion of _variable_. How to define variable in **Bash**? Let's say that we want to use the variable named _Var_, and initialize it with the value 44? Simply type in the terminal: 
+Just as any other programming language, **Bash** also supports a notion of _variables_. How to define variable in **Bash**? Let's say that we want to use the variable named ```Var```, and initialize it with the value ```44```? Simply type in the terminal: 
 
 ```bash
 Var=44
 ```
-While this appears to be the most trivial thing you could do, even at this simple level we can encounter some problems, which can very nicely illustrate some of the general design philosophy used in **Bash** and **Linux**. Most importantly, since an _empty character_ is the default input field separator, it would be completely wrong to type any of the following:
+While this appears to be the most trivial thing you could do, even at this simple level we can encounter some problems, which can very nicely illustrate something of the general design philosophy used in **Bash** and **Linux**. Most importantly, since an _empty character_ is the default input field separator, it would be completely wrong to type any of the following:
 
 ```bash
 Var =44 # WRONG!!
 Var= 44 # WRONG!!
 Var = 44 # WRONG!!
 ```
-In each case, you get an error message, e.g. ```Var: command not found```, since **Bash** was trying to interpret the first token in the input, ```Var``` in this case, as command name. Since command named ```Var``` was not found, **Bash** writes the error message in the terminal. Therefore, when introducing and initializing a new variable in **Bash**, make sure there are no empty characters round the _assignment operator_ **=** .
+In each case, you get an error message, e.g. ```Var: command not found```, since **Bash** was trying to interpret the first token in the input, ```Var``` in this case, as command name. Since command named ```Var``` was not found, **Bash** writes the error message in the terminal. Therefore, when introducing and initializing a new variable in **Bash**, make sure there are no empty characters round the _assignment operator_ ```=``` .
 
-As a side remark, from the above three lines, you can also see how to make a comment in **Bash** --- simply use the special character **#** (hash symbol) to start your comment. Once you use it on the particular line, any text after it is being ignored by **Bash**. You can not terminate the comment within a given line in which you have used **#** to start the comment. Therefore, you can terminate the commented text only by starting to write in the new line.
+As a side remark, from the above three lines, you can also see how to make a comment in **Bash** --- simply use the special character ```#``` (hash symbol) to start your comment. Once you use it on the particular line, any text after it is being ignored by **Bash**. You can not terminate the comment within a given line in which you have used ```#``` to start the comment. Therefore, you can terminate the commented text only by starting to write in the new line.
 
 Example: 
 
@@ -353,7 +353,7 @@ echo "Hi there" # comment
 Hi there
 ```
 
-Once defined, how to use (or reference) the content stored in variable? In order to reference the content of variable, we use the special symbol **$** to achieve that, e.g. 
+Once it was defined, we now explain how to use (or reference) the content stored in the variable? In order to reference the content of variable, we use the special symbol ```$```, e.g. 
 
 ```bash
 Var=44
@@ -379,7 +379,7 @@ Example: This also works, but only in the latter case:
 
 ```bash
 Var=44
-echo "test${Var}test"
+echo test${Var}test
 ```
 The output is:
 ```bash
@@ -389,23 +389,23 @@ If you would have used the first, shorter syntax, then ```Vartest``` would be in
 
 ```bash
 Var=44
-echo "test$Vartest"
+echo test$Vartest
 ```
 The output is:
 ```bash
 test
 ```
 
-Few final additional remarks on variables in **Bash**:
+Few additional remarks on variables in **Bash**:
 
 * They are untyped (i.e. you do not need to specify at declaration whether variables are integers, strings, etc.). By default, all **Bash** variables are strings, but if they contain only digits and if you pass them to some operator which takes as argument(s) only integers, then **Bash** will interpret the variable as an integer;
-* By convention, for built-in **Bash** variable names we use only capital characters, while for command names we use all low-case characters. For user's variables, please use some intermediate case, like _Var_ , to ease the code readability, and to avoid potential conflicts with existing built-in variables;
+* By convention, for built-in **Bash** variable names we use only capital characters, while for command names we use all low-case characters. For user-defined variables, the best is to use some intermediate case, like ```Var``` , to improve the code readability, and to avoid potential conflicts with the names of existing built-in variables and commands;
 * The lifetime of variable is by default limited to the terminal session in which you have defined it. But you can make its existence persistent in any new terminal you open (i.e. in your _environment_) by adding its declaration to the very special **.bashrc** file (more on this in the moment!);
 * It is possible to store in the variable the output of some command, and then manipulate it programmatically (more on this later!);
-* It is possible to store on the variable the content of external file (more on this later!);
-* There are some built-in variables always set to some values, e.g. **HOME**, **SHELL**, **PATH**, etc. (more on this later!);
+* It is possible to store in the variable the content of external textual file (more on this later!);
+* Few examples of built-in **Bash** variables which are always set to some values: **HOME**, **SHELL**, **PATH**, etc. (more on this later!);
 
-Now that we have covered the very basics of commands and variables, let's see how we can develop the first scripts. In order to achieve that, the very first step is to learn how to edit the file in the terminal. 
+Now that we have covered the very basics of commands and variables, let's see how we can develop the first **Bash** scripts. In order to achieve that, the very first step is to learn how to edit the file in the terminal. 
 
 
 
