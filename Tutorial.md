@@ -579,7 +579,7 @@ In the analogous way, you can organize the definitions of your functions, etc.
 
 ### 5. Positional parameters <a name="positional_parameters"></a>
 
-Let us now see how you can pass some arguments to your script at execution. This would then clearly allow you much more freedom and power, as nothing really needs to be hardcoded in the script body. This is achieved via the so-called _positional parameters_ (sometimes also called _script arguments_).
+Let us now see how we can pass some arguments to the script at execution. This would then clearly allow us much more freedom and power, as nothing really needs to be hardcoded in the script body. This is achieved via the so-called _positional parameters_ (sometimes also called _script arguments_).
 
 **Example:** We want to develop a script, let's say _favorite.sh_ which takes two arguments, the first one is interpreted as a name of collider, the second as the name of collaboration, and it shall just print someting like: 
 ```bash
@@ -597,37 +597,37 @@ return 0
 If you now execute this script for instance as:
 
 ```bash
-source favorite.sh LHC ALICE
+source favorite.sh LHC TOTEM
 ```
 
 the printout looks as follows:
 
 ```bash
-My favorite collider is LHC, and my favorite experiment is ALICE.
+My favorite collider is LHC, and my favorite experiment is TOTEM.
 ```
 
-So how does this work? It's very simple and straightforward, there is no black magic happening here! Whatever you have typed first after ```source favorite.sh``` and before the next empty character is encountered, is being declared as the 1st positional parameter, and its value is stored in the internal variable ```${1}``` ("LHC" in the example above).  Whatever you have typed next, and before the next empty character is encountered, is being declared as the 2nd positional parameter, and its value is stored in the internal variable ```${2}``` ("ALICE" in the example above). And so on --- in this way you can pass to your script as many arguments as you wish!
+So how does this work? It's very simple and straightforward, there is no black magic happening here! Whatever you have typed first after ```source favorite.sh``` and before the next empty character is encountered, is being declared as the 1st positional parameter, and its value is stored in the internal variable ```${1}``` ("LHC" in the example above).  Whatever you have typed next, and before the next empty character is encountered, is being declared as the 2nd positional parameter, and its value is stored in the internal variable ```${2}``` ("TOTEM" in the example above). And so on --- in this way you can pass to your script as many arguments as you wish!
 
-Once you fetch programmatically in the body of your script the passed arguments via variables ```${1}```, ```${2}```, etc. , you can do all sort of manipulations on them, which can completely modify the behavior of your script, depending which values you have specified for them. 
+Once we fetched programmatically in the body of the script the supplied arguments via variables ```${1}```, ```${2}```, etc. , we can do all sort of manipulations on them, which can completely modify the behavior of your script, depending which values you have specified for them. 
 
 Final remark on positional parameters: 
 
 * You can programmatically fetch their total number via the special variable: ```$#```
 * You can programmatically fetch them all in one go via the special variables: ```$*``` or ```$@```
 
-This in combination with looping allows you to programmatically parse over all passed arguments (i.e. no need to hardwire somewhere in your script that you expect exactly certain number of arguments, etc.). 
+This in combination with looping allows you to programmatically parse over all supplied arguments (i.e. no need to hardwire somewhere in your script that you expect exactly certain number of arguments, etc.). 
 
 It is also possible to access directly the very last positional parameter, by using the indirect reference (“value of the value”) ```!``` — the syntax for last positional parameter is : ``` ${!#}``` 
 
-**Example**: Proof of principle --- the script _arguments.sh_ which counts and prints all arguments passed to it. 
+**Example**: Proof of principle --- the script _arguments.sh_ which counts and prints all arguments supplied to it. 
 ```bash
 #!/bin/bash
 
 echo "Total number of arguments is: $#"
-echo "Second argument is: ${2}"
+echo "The second argument is: ${2}"
 echo "The very last argument is: ${!#}"
 
-for pp in $*; do # pp is an arbitrary name of loop variable, here its naming convention reflects 'positional parameters'
+for pp in $*; do # pp is an arbitrary name of loop variable
  echo "$pp"
 done
 
