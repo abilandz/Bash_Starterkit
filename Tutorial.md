@@ -723,11 +723,10 @@ Remember that when you launch a new terminal the file ```${HOME}/.bashrc``` is b
 
 ### 7. Using an arbitrary executable as **Linux/Bash** command <a name="arbitrary_executable"></a>
 
+In order to illustrate how an arbitrary executable (e.g. compiled C++ code) can be used as any other **Linux** command, we first review some important file attributes.
 
 #### A) Setting file permissions <a name="permissions"></a>
-
-
-In general, each file or directory in Linux has 3 kind of timestamps:
+In general, each file or directory in **Linux** has 3 kind of timestamps:
 
 - **Access** --- the last time the file was read
 **Modify** --- the last time the file was modified (content has been modified)
@@ -747,7 +746,7 @@ Finally, each file in Linux has 3 levels of permissions (access rights):
 
 -  **read (r)** --- file can be read
 **write (w)** --- file can be written to (i.e. modified)
-**execute (x)** --- file is executable (i.e. program)
+**execute (x)** --- file is executable (i.e. program or binary)
 
 For instance, when you execute
 ```linux 
