@@ -657,7 +657,7 @@ In this way, you can instruct your own script to behave differently if certain o
 
 As the very first and respectable version of your own command in **Linux/Bash**, which can take and interpret arguments, provide exit status, etc., we can consider  **Bash** function. 
 
-Functions in **Bash** are very similar to scripts, however the details of their implementations differ. In addition, functions are safer to use than scripts, since they have a well defined notion of local environment. This means basically that if you have the variable with the same name in your current terminal session and in the script you are sourcing or in the function you are calling, it's much easier to prevent the clash of variables with the same name, if you use functions. In addition, usage of functions to great extent can resemble the usage of **Linux** commands, and in this sense your first function developed in **Bash** can be also treated as your first command! 
+Functions in **Bash** are very similar to scripts, however the details of their implementations differ. In addition, functions are safer to use than scripts, since they have a well defined notion of _local environment_. This means basically that if you have the variable with the same name in your current terminal session and in the script you are sourcing or in the function you are calling, it's much easier to prevent the clash of variables with the same name, if you use functions. In addition, usage of functions to great extent can resemble the usage of **Linux** commands, and in this sense your first function developed in **Bash** can be also treated as your first command! 
 
 Example implementation of **Bash** function could look like:
 
@@ -666,19 +666,20 @@ Example implementation of **Bash** function could look like:
 
 function Hello
 {
- # Comment here briefly what this function is supposed to do, or how it shall be used. E.g.:
- ## Usage: Hello <some-name>
+ # Comment here briefly what this function is supposed to do, 
+ # or how it shall be used.
+ # Usage: Hello <some-name>
 
  echo "Hello there!"
- local NAME=${1}
- echo "Your name is: ${NAME}"
+ local Name=${1}
+ echo "Your name is: ${Name}"
 
  return 0
 
 }
 ```
 
-If you have saved the above snippet in the file _functions.sh_, then in order to call your function **Hello**, please do:
+If you have saved the above code snippet in the file _functions.sh_, then in order to call your function **Hello**, you need to source the file in which functions are implemented:
 
 ```bash
 source functions.sh
@@ -714,7 +715,7 @@ The rest is the same as for the scripts:
 source <abs-path-to-your-file>/functions.sh
 ```
 
-Since when you launch a new terminal the file ```${HOME}/.bashrc``` is being sourced before you can type anything, the implementation of your functions from file _functions.sh_ will be automatically sourced as well, which means that your functions are ready for usage, just as **Linux** commands -- in this sense the first **Bash** function you have written can be regarded also as your own first **Linux** command!
+Remember that when you launch a new terminal the file ```${HOME}/.bashrc``` is being sourced before you can type anything. Therefore, the implementation of your functions from the file _functions.sh_ will be automatically sourced as well, which means that your functions are ready for usage, just as **Linux** commands -- in this sense the first **Bash** function you have written can be regarded also as your own first **Linux** command!
 
 
 
