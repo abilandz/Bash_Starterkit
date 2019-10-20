@@ -412,7 +412,7 @@ Now that we have covered the very basics of commands and variables, let's see ho
 
 ### 3. Editing a file in the terminal <a name="editing_file"></a>
 
-We have already seen how with **touch** command we can make an empty file. Now we will see how we can write a file or edit an already existing file in the terminal. The simplest way to write a new file, solely in the terminal (i.e. without using any graphics based editor like **gedit**, **emacs**, **vim**, etc.), is to use the command **cat**, in the following construct:
+We have already seen how with the **touch** command we can make an empty file. Now we will see how we can write something into a new file or how we can edit an already existing file, solely in the terminal. The simplest way to write a new file in the terminal (i.e. without using any graphics based editor like **gedit**, **emacs**, **vim**, etc.), is to use the **Linux** command **cat**, in the following construct:
 
 ```linux
 cat > someFile.txt
@@ -422,12 +422,12 @@ first
    file.
 CTRL+d
 ```
-In the above construct, command **cat** takes the input directly from the standard input (keyboard by default), and redirects everything via operator ```>``` into the physical file named ```someFile.txt``` in your current working directory. You terminate the input, i.e. you mark the end of file, by moving to the new line with pressing 'Enter', and then pressing ```CTRL+d``` on an empty line (if you press ```CTRL+d``` when the line is not empty, the input to file is not terminated). Now you can see the content of your newly created file with:
+In the above construct, command **cat** takes the input directly from the standard input (keyboard by default), and redirects everything via operator ```>``` into the physical file named ```someFile.txt```, which will be automatically created in your current working directory. You terminate the input, i.e. you mark the end of file, by moving to the new line by pressing 'Enter', and then by pressing ```CTRL+d``` on an empty line (if you press ```CTRL+d``` when the line is not empty, the input to the file is not terminated). Now you can see the content of your newly created file with:
 
 ```linux
 cat someFile.txt
 ``` 
-Note that **cat** preserves all empty characters, line breaks, etc. In the case you want to append something to the already existing file, we can use a slightly modified construct:
+Note that **cat** preserves all empty characters, line breaks, etc. In the case you want to append something at the end of the already existing file, we can use a slightly modified construct:
 
 ```linux
 cat >> someFile.txt
@@ -435,14 +435,14 @@ test 1
 test 2
 CTRL+d
 ```
-The operator ```>>``` appends the text at the end of already existing file. If we would have used ```>``` to redirect the new content to the already existing file, that file would be overwritten with the next content --- use ```>``` in this context with great care! This, however, also implies that the above **cat** construct is rather limited, as it can be used either to write a new file from scratch or to append a new content at the very end of already existing file. But what if we want to edit the already existing content in the file? For that sake we need to use some simple editor which can be run in the terminal (i.e. without graphics). One such, wide-spread, open-source, editor is **nano**, which includes only the bare minimum of functionality needed to edit documents, making it very simple to use. In addition,  syntax coloring is available for most of the programming languages. Now as an exercise, let us edit the content of already existing non-empty file ```someFile.txt``` from previous **cat** example.
+The operator ```>>``` appends the text at the end of already existing file. If we would have used ```>``` to redirect the new content to the already existing file, that file would be overwritten with the next content --- use  operator ```>``` in this context with the great care! This, however, also implies that the above **cat** construct is rather limited, as it can be used either to write a new file from scratch or to append a new content at the very end of an already existing file. But what if we want to edit the already existing content in the file? For that sake we need to use some simple editor which can be run in the terminal (i.e. without graphics). One such, wide-spread, open-source, editor is **nano**, which includes only the bare minimum of functionalities needed to edit files, making it very simple to use. In addition, the syntax coloring is available for most of the programming languages. Now as an exercise, let us edit the content of already existing non-empty file ```someFile.txt``` from previous **cat** example.
 
 ```linux 
 nano someFile.txt
 ```
-Now you are in the **nano** wonderland, not any longer in the shell, which means that the commands you type and keyboard strokes are interpreted in a different way now! After you have edited some existing text or wrote something new, simply in **nano** press ```CTRL+o``` (to write out into the physical file ```someFile.txt``` what you have edited so far in the editor --- this is the same thing as saving, just jargon is different...). When you are done with editing, press ```CTRL+x``` to exit **nano**, and get back to the terminal. Of course, usage of **nano** is not mandatory to edit files, and for large files it is in fact very inconvenient, but there are two nice things about **nano** which shouldn't be underestimated --- it is always available on basically all Linux distributions, and it can be run in the terminal (this becomes very relevant when connecting and working remotely on some computer!).
+Now you are in the **nano** wonderland, not any longer in the **Bash** shell, which means that the commands you type and keyboard strokes are interpreted in a different way now! After you have edited some existing text or wrote something new, simply in **nano** press ```CTRL+o``` (to write out into the physical file ```someFile.txt``` what you have edited so far in the editor --- this is the same thing as saving, just jargon is different...). When you are done with editing, press ```CTRL+x``` to exit **nano**, and get back to the terminal. Of course, usage of **nano** is not mandatory to edit files, and for large files it is in fact very inconvenient, but there are two nice things about **nano** which shouldn't be underestimated --- it is always available on basically all Linux distributions, and it can be run in the terminal (this becomes very relevant when connecting and working remotely on some computer!).
 
-We have already seen how to define your own aliases and variables, but we did not stress out one important point: Their lifetime  is limited to the duration of terminal session in which you have defined them. In any new terminal you launch, their definitions are not known. But there is own important thing which happens behind the scene each time you launch a new terminal, and before you can start typing anything: **Bash** reads automatically some configuration files end executes line-by-line whatever is being set in them. There are bunch of configuration files which **Bash** might read when you launch a new terminal, and the order and precedence of their reading matters. We will cover these technicalities later, but in the most cases of interest, it suffices to edit the **Bash** configuration file called ```.bashrc```. This file must be stored directly in your home directory (if it's stored somewhere else **Bash** will not read it by default). In order to stress that out, typically we refer to this important configuration file with ```~/.bashrc```, where special character ```~``` (tilde) is the shortcut for the absolute path to your home directory. As an example, please execute:
+We have already seen how to define your own aliases and variables, but we did not stress out one important point: Their lifetime  is limited to the duration of terminal session in which you have defined them. In any new terminal you launch, their definitions are not known. But there is own important thing which happens behind the scene each time you launch a new terminal, and before you can start typing anything: **Bash** reads automatically some configuration files end executes line-by-line whatever is being set in them. There are bunch of configuration files which **Bash** might read when you launch a new terminal, and the order and precedence of their reading matters. In the most cases of interest, it suffices to edit the **Bash** configuration file called ```.bashrc```. This file must be stored directly in your home directory (if it's stored somewhere else **Bash** will not read it by default). In order to stress that out, typically we refer to this important configuration file with ```~/.bashrc```, where special character ```~``` (tilde) is the shortcut for the absolute path to your home directory. As an example, please execute:
 
 ```bash
 echo ~
@@ -455,6 +455,20 @@ This is the absolute path to your home directory in the **Linux** file system, a
 ```bash
 echo $HOME
 ``` 
+
+Now, open in **nano** the ```~/.bashrc``` file with:
+
+```bash
+nano ~/.bashrc
+```
+
+move to its end in **nano**, and add the following two exemplary lines at the end:
+```
+alias lx='ssh -Y abilandz@lxplus.cern.ch'
+Var=44
+```
+Save changes in ```~/.bashrc``` and exit **nano** by pressing ```CTRL+x```. Now each time when you open a new terminal, the alias 'lx' and variable 'Var' will be automatically set by **Bash**. In this way, you can change the default environment settings, and re-use those changes in any future terminal session. In this way you can also preserve the definitions of **Bash** functions, command paths, etc. -
+
 
 
 
