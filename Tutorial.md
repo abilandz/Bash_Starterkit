@@ -442,7 +442,7 @@ nano someFile.txt
 ```
 Now you are in the **nano** wonderland, not any longer in the **Bash** shell, which means that the commands you type and keyboard strokes are interpreted in a different way now! After you have edited some existing text or wrote something new, simply in **nano** press ```CTRL+o``` (to write out into the physical file ```someFile.txt``` what you have edited so far in the editor --- this is the same thing as saving, just jargon is different...). When you are done with editing, press ```CTRL+x``` to exit **nano**, and get back to the terminal. Of course, usage of **nano** is not mandatory to edit files, and for large files it is in fact very inconvenient, but there are two nice things about **nano** which shouldn't be underestimated --- it is always available on basically all Linux distributions, and it can be run in the terminal (this becomes very relevant when connecting and working remotely on some computer!).
 
-We have already seen how to define your own aliases and variables, but we did not stress out one important point: Their lifetime  is limited to the duration of terminal session in which you have defined them. In any new terminal you launch, their definitions are not known. But there is own important thing which happens behind the scene each time you launch a new terminal, and before you can start typing anything: **Bash** reads automatically some configuration files end executes line-by-line whatever is being set in them. There are bunch of configuration files which **Bash** might read when you launch a new terminal, and the order and precedence of their reading matters. In the most cases of interest, it suffices to edit the **Bash** configuration file called ```.bashrc```. This file must be stored directly in your home directory (if it's stored somewhere else **Bash** will not read it by default). In order to stress that out, typically we refer to this important configuration file with ```~/.bashrc```, where special character ```~``` (tilde) is the shortcut for the absolute path to your home directory. As an example, please execute:
+We have already seen how to define your own aliases and variables, but we did not stress out one important point: Their lifetime  is limited to the duration of terminal session in which you have defined them. In any new terminal you launch, their definitions are not known. But there is own important thing which happens behind the scene each time you launch a new terminal, and before you can start typing anything: **Bash** reads automatically some configuration files end executes line-by-line whatever is being set in them. There are bunch of configuration files which **Bash** might read when you launch a new terminal, and the order and precedence of their reading matters. In the most cases of interest, it suffices to edit the **Bash** configuration file called ```.bashrc```.  This is one of hidden files (name starts with ```.``` and therefore not listed by default with ```ls``` command --- in order to see hidden files, you need to use ```ls -al```) in your home directory. If ```.bashrc``` is not already in your home directory, then create and edit a brand new one. If it already exists and is non-empty, modify its content only if you really know what you are doing. This file must be stored directly in your home directory (if it's stored somewhere else **Bash** will not read it by default). In order to stress that out, typically we refer to this important configuration file with ```~/.bashrc```, where special character ```~``` (tilde) is the shortcut for the absolute path to your home directory. As an example, please execute:
 
 ```bash
 echo ~
@@ -467,14 +467,14 @@ move to its end in **nano**, and add the following two exemplary lines at the en
 alias lx='ssh -Y abilandz@lxplus.cern.ch'
 Var=44
 ```
-Save changes in ```~/.bashrc``` and exit **nano** by pressing ```CTRL+x```. Now each time when you open a new terminal, the alias 'lx' and variable 'Var' will be automatically set by **Bash**. In this way, you can change the default environment settings, and re-use those changes in any future terminal session. In this way you can also preserve the definitions of **Bash** functions, command paths, etc. -
+Save changes in ```~/.bashrc``` and exit **nano** by pressing ```CTRL+x``` and choose 'Yes' . Now each time when you open a new terminal, the alias 'lx' and variable 'Var' will be automatically set by **Bash**. In this way, you can change the default environment settings, and re-use those changes in any new terminal session in the future. In this way you can also preserve the definitions of **Bash** functions, command paths, etc. We will see in the next section how the user-defined settings can be add to ```~/.bashrc``` in a more elegant and safer way.
 
 
 
 
 ### 4. Your first **Bash** script <a name="first_script"></a>
 
-Now that we know few basic commands and how to write and edit files, we can start writing our first **Bash** scripts. Script is a code snippet for interpreted or scripting language, that is typically executed line-by-line.  At the very least, this saves the effort of retyping that particular sequence of commands each time it is invoked. Typically scripts are used to automate the execution of tasks that could alternatively be executed one-by-one by a human operator. A scripting language is a programming language that supports scripts, so clearly **Bash** fits in this category.
+Now that we know a few basic commands and how to write and edit files, we can start writing our first **Bash** scripts. Script is a code snippet for interpreted or scripting language, that is typically executed line-by-line.  At the very least, this saves the effort of retyping that particular sequence of commands each time it is invoked. Typically scripts are used to automate the execution of tasks that could alternatively be executed one-by-one by a human operator. A scripting language is a programming language that supports scripts, so clearly **Bash** fits in this category.
 
 Let us now write your first **Bash** script! For instance, you can type in the terminal:
 
@@ -482,7 +482,7 @@ Let us now write your first **Bash** script! For instance, you can type in the t
 nano first.sh
 ```
 
-Now you are not any longer in the terminal, but in the very simple textual editor called **nano**, and whatever you are typing now, it can be saved in the file _first.sh_ --- the file which will hold your first **Bash** script (remember that **Bash** scripts always have an extension **.sh**). Your first  **Bash** script could look as follows:
+Remember that now you are not any longer in the **Bash** shell, but instead in the very simple textual editor called **nano**, and whatever you are typing now, it can be saved in the file _first.sh_ --- the file which will hold your very first **Bash** script (by convention, **Bash** scripts always have an extension **.sh**). Your first  **Bash** script could look as follows:
 
 ```bash
 #!/bin/bash
@@ -500,9 +500,9 @@ Now let us have a closer look at the content of your first **Bash** script:
 * The first line is mandatory, namely: ```#!/bin/bash```
 * The first two characters in the first line are mandatory, namely: ```#!``` (shebang or hashbang)
 
-What is happening here is literally the following: ```#!```in the first line indicates to the operating system, that whatever follows next on the first line, shall be interpreted as a path to the executable (e.g. ```/bin/bash``` if you want to run **Bash**), which then shall be used to interpret the code in all the remaining lines in the script. In this way, you can put up together any script, not necessarily only the one for **Bash** --- you just need to change ```/bin/bash``` in the first line, to point out to some other executable.
+What is happening here is literally the following: ```#!```in the first line indicates to the operating system, that whatever follows next on the first line, will be interpreted as a path to the executable (e.g. ```/bin/bash``` if you want to run **Bash**), which then will be used to interpret the code in all the remaining lines in the script. In this way, you can put up together any script, not necessarily only the one for **Bash** --- you just need to change ```/bin/bash``` in the first line, to point out the path in the filesystem to some other executable.
 
-From above example, you can see that whatever we have previously executed directly in the terminal (e.g. **echo** and **date** commands), we can also write in the script, and then execute all commands in one go, by executing the script. That being said, at the very basic level, scripting saves you time needed to retype again and again any regular sequence of commands after you open a new terminal --- for instance the file _first.sh_ you just made is available in any new terminal you open!
+From the above example, you can see that whatever we have previously executed directly in the terminal (e.g. **echo** and **date** commands), we can also write in the script, and then execute all commands in one go, by executing that script. That being said, at the very basic level, scripting saves you a lot of time and effort which is needed to retype again and again any regular sequence of commands after you open a new terminal --- for instance the file _first.sh_ you just made is available in any new terminal you open!
 
 How to execute the **Bash** script? It's simple, just pass the file name as an argument to the command **source** (i.e. in a jargon, you need to _source_ your script):
 
@@ -518,12 +518,12 @@ Today is:
 Mi 1. Mai 14:47:21 CEST 2019
 ```
 
-Finally, ```return 0``` sets the _exit status_ of your script. In general, each command in **Bash** or in **Linux** upon execution provides the so called exit status. This is a fairly general concept, characteristic also for some other programming languages, and it enables us to programmatically check if the command executed successfully or not. The exit status is classified as:
+Finally, ```return 0``` sets the _exit status_ of your script. In general, each command in **Bash** or **Linux** upon execution provides the so called exit status. This is a fairly general concept, characteristic also for some other programming languages, and it enables us to programmatically check if the command executed successfully or not. The exit status in **Bash** is classified as:
 
 * 0 : success
 * 1, 2, 3, ... , 255 : various error states
 
-The exist status is stored in the special variable **$?**. For instance:
+The exit status of the last executed command is stored in the special variable ```$?```. For instance:
 
 ```linux
 date
@@ -537,9 +537,9 @@ date -q
 echo $? # prints 1 , one possible exit status for error
 ```
 
-Typically, in your code after you have executed the command, you check its exit status and depending on the value of its exit status, your subsequent code can branch in multiple directions. Remember that each Linux command has an exit status stored in the special variable **$?** upon its execution, so it shall also your  **Bash** script. As long as you are executing your script via **source** command, you can set the exit status with the key word **return** (see the last line in your above script!). 
+As soon as we execute another command, the content of variable ```$?``` is updated with the exit status of that new command, Typically, in your code after you have executed the command, you check its exit status and depending on the value of its exit status, your subsequent code can branch in multiple directions. Since each **Linux** command has an exit status stored in the special variable ```$?``` upon its execution, so it shall also your  **Bash** script. When you are executing your script via **source** command, you can set the exit status with the key word **return** (see the last line in your above script!). 
  
-As another example, when frequently you would be _sourcing_ some file, we consider the case when you want some of your alias definitions of variables to become an integral part of your working environment in **Bash** (i.e. you want them to be available in each new terminal you start), you can achieve that by editing ```~/.bashrc``` . This is one of hidden files (name starts with ```.``` and therefore not listed by default with ```ls``` command --- in order to see hidden files, you need to use ```ls -al```) in your home directory. If ```.bashrc``` is not already in your home directory, then create and edit a brand new one. If it already exists and is non-empty, modify its content only if you really know what you are doing... But it is not a problem to add at the end of this file your own personal definitions, for instance definitions for variables and aliases that you would need again and again. First, let us edit in your home directory the file named for instance _~/.bash\_aliases_ . We start by executing in the terminal:
+As another example, when frequently you would be _sourcing_ some file, we consider the case when you want some of your definitions for aliases and variables to become an integral part of your working environment in **Bash** (i.e. you want them to be available in each new terminal you start). We already saw that we can achieve that by editing directly for each new definition the configuration file ```~/.bashrc```, but let us now do it more elegantly and safer by using the **source** command . First, let us edit in your home directory the file named for instance _~/.bash\_aliases_ . We start by executing in the terminal:
 
 ```linux
 nano ~/.bash_aliases
@@ -547,28 +547,32 @@ nano ~/.bash_aliases
 And then in **nano** write the following two lines:
 
 ```nano
-Var=44
 alias sl=ls
+alias lx='ssh -Y abilandz@lxplus.cern.ch'
+Var=44
 ```
 
-Save the file (press ```CTRL+x``` and choose 'Yes' ) and exit the **nano**. You can check the content of file  _~/.bash\_aliases_
-via 
+Save the file (press ```CTRL+x``` and choose 'Yes') and exit the **nano**. You can check the content of file  _~/.bash\_aliases_ via 
 
 ```linux
 cat ~/.bash_aliases
 ```
 
-Since the content of ```.bashrc``` file is read and executed each time you start a new terminal, and before you can start typing anything in the terminal, your own personal definitions stored there, for instance for aliases and variables, will be re-defined each time you start a new terminal, and you can happily re-use them again and again. As an example, please add the following line at the very end of ```$HOME/.bashrc```
+Since the content of ```.bashrc``` file is read and executed each time you start a new terminal, and before you can start typing anything in the terminal, your own personal definitions stored there will be re-defined each time you start a new terminal, and you can happily re-use them again and again. As an example, add the following line at the very end of ```$HOME/.bashrc```
 
 ```bash
 source ~/.bash_aliases
 ```
 
-Now each time you run a new terminal, variable ```Var``` is set to 44, and you can use ```sl``` as the synonym for ```ls``` command, i.e. you do not need to define them again in the new terminal sessions! In the case you need to add more aliases, simply edit again the file _~/.bash_aliases_ . This is much safer than to edit directly each time the file _~/.bashrc_ where also some other, and more important settings, can be defined as  well.  In the case you move to another computer, you can enable your aliases there simply by porting the file _~/.bash_aliases_ , and additing on the new computer in file _~/.bashrc_ the at the end the line:
+Now each time you run a new terminal, variable ```Var``` is set to 44, you can use ```sl``` as the synonym for ```ls``` command reducing the number of typos, and ```lx``` as a handy shortcut to connect to CERN's lxplus,
+
+In the case you need to add more aliases, simply edit again the file _~/.bash_aliases_ . This is much safer than to edit directly each time the file _~/.bashrc_ where also some other, and more important settings, can be defined as  well.  In the case you move to another computer, you can enable your aliases there simply by porting the file _~/.bash_aliases_ , and additing on the new computer in file _~/.bashrc_ at the end the line:
 
 ```bash
 source ~/.bash_aliases
 ```
+In the analogous way, you can organize the definitions of your functions, etc.
+
 
 
 
