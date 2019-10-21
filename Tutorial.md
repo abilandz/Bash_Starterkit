@@ -161,18 +161,24 @@ where we use notation ```< ... >``` just as a placeholder. This is the right mom
 
 Let's look at them one by one...
 
-* ```<command-name>``` : Whatever you type first in the terminal, i.e. before the next empty character is being encountered on terminal input, **Bash** is trying to interpret as some known **Linux** command, **Bash** key-word, etc. In general, **<command-name\>** can stand for one of the following items:
+* ```<command-name>``` : Whatever you type first in the terminal, i.e. before the next empty character is being encountered on terminal input, **Bash** is trying to interpret as some known **Linux** command, **Bash** key-word, etc. In general, ```<command-name>``` can stand for one of the following items:
 
 	1) **Linux** command (i.e. system-wide executable or binary) --- example:  **cat**
+	
 	2) **Bash**  built-in command --- example: **echo**
+	
 	3) **Bash** keyword  --- example: **for**
+	
 	4) alias
+	
 	5) function
+	
 	6) script
 
 * ```<option(s)>``` : Options (or flags) are used to modify the default behaviour of command. Options are indicated either with:
 
 	1) **-** (single dash) followed by single character(s), or
+	
 	2)  **-\-** (two consecutive dashes) followed by a more descriptive explanation of what needs to be modified.
 
 For instance, the frequently used flags **-a** and **-\-all** are synonyms, in a sense that they modify the default behaviour of command in exactly the same way. The first version is easier to type, but the second one is easier to memorize. Example for **date** command:
@@ -184,7 +190,7 @@ date --utc
 Mo 29. Apr 13:33:59 UTC 2019
 ```
 
-But how do we know that for command **date** flags **-u** and **-\-utc** are available, and how do we know in which way they will modify the default behaviour of command? All such options for each command are documented in so-called _man pages_ . Basically, whenever you develop a new command, it is also essential that you develop its documentation, otherwise nobody will be able to use your command. For built-in **Bash** commands, documentation is retrieved simply with:
+But how do we know that for the command **date** flags **-u** and **-\-utc** are available, and how do we know in which way they will modify the default behaviour of command? All such options for each command are documented in so-called _man pages_ . Basically, whenever you develop a new command, it is also essential that you develop its documentation, otherwise nobody will be able to use your command. For built-in **Bash** commands, documentation is retrieved simply with:
 
 ```bash
 help <command-name>
@@ -258,6 +264,20 @@ mkdir subdir_1 subdir_2 subdir_3
 ```
 will make 3 new subdirectories in your current working directory (check again by executing ```ls -al```).
 
+In order to move from one directory to another, use **Linux** command **cd** ('change directory'), e.g.
+```linux
+cd subdir_1
+```
+Now you have moved in the newly created directory ```subdir_1```. In the case you get lost in the filesystem, use **Linux** command **pwd** ('print working directory'), to print on the screen absolute path in the filesystem to your current working directory, e.g. in the current example,
+
+```linux
+pwd
+```
+would print something like
+```linux
+/home/abilandz/subdir_1
+```
+
 By now we have been using only the already existing either **Bash** or **Linux** commands. The simplest way to create your own command, with a rather limited functionality and flexibility but nevertheless quite convenient, is to use **Bash** built-in command **alias**.  For instance, if you are bored to type something lengthy again and again in the terminal, you can introduce shortcut for it, by using the **Bash** built-in command **alias**. For instance, you can abbreviate the lengthy input
 
 ```bash
@@ -288,7 +308,7 @@ But do you really want to type that again and again each time you want to connec
 ```bash
 alias lx='ssh -Y abilandz@lxplus.cern.ch'
 ```
-Here basically you have defined an abbreviation (or alias, or shortcut) for lengthy command input, and in this case, you have named it **lx**. Now it suffices only to type in the terminal 
+Here basically you have defined an abbreviation (or alias, or shortcut) for the lengthy command input, and in this case, you have named it **lx**. Now it suffices only to type in the terminal 
 
 ```bash
 lx
@@ -320,10 +340,10 @@ unalias <alias-name>
 Aliases are definitely a nice feature, but do not overdo it, because:
 
 * When you move to another machine your personal definitions for aliases are not available there by default;
-* Aliases can overwrite the name of the already existing **Linux** or **Bash** command --- aliases have the higher precedence;
+* Aliases can overwrite the name of the already existing **Linux** or **Bash** command -- aliases have the higher precedence;
 * Aliases cannot accept options or arguments, like regular commands. 
 
-Aliases are literally shortcuts for commands or whatever else, defined for convenience to save typing. Whatever you have defined an alias to stand for, **Bash** with simply inline or replace in the terminal the alias name with its content, and then execute that content --- nothing more than that! 
+Aliases are literally shortcuts for commands or whatever else, defined for convenience to save typing. Whatever you have defined an alias to stand for, **Bash** with simply inline or replace in the terminal the alias name with its content, and then execute that content -- nothing more than that! 
 
 
 
