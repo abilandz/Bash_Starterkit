@@ -368,7 +368,7 @@ As a side remark, from the above three lines, you can also see how to make a com
 
 Example: 
 
-```
+```bash
 echo "Hi there" # comment
 Hi there
 ```
@@ -395,7 +395,7 @@ In both cases the printout in the terminal is the same, namely:
 
 So what is the difference between the two syntaxes above? The latter is less error prone (as it clearly delineates with curly braces the variable name from the rest of the code!) and more powerful, as it enables a lot of built-in functionalities for the string manipulations programmatically within **Bash**. 
 
-Example: This also works, but only in the latter case: 
+**Example:** This also works, but only in the latter case: 
 
 ```bash
 Var=44
@@ -420,10 +420,10 @@ Few additional remarks on variables in **Bash**:
 
 * They are untyped (i.e. you do not need to specify at declaration whether variables are integers, strings, etc.). By default, all **Bash** variables are strings, but if they contain only digits and if you pass them to some operator which takes as argument(s) only integers, then **Bash** will interpret the variable as an integer;
 * By convention, for built-in **Bash** variable names we use only capital characters, while for command names we use all low-case characters. For user-defined variables, the best is to use some intermediate case, like ```Var``` , to improve the code readability, and to avoid potential conflicts with the names of existing built-in variables and commands;
-* The lifetime of variable is by default limited to the terminal session in which you have defined it. But you can make its existence persistent in any new terminal you open (i.e. in your _environment_) by adding its declaration to the very special **.bashrc** file (more on this in the moment!);
-* It is possible to store in the variable the output of some command, and then manipulate it programmatically (more on this later!);
-* It is possible to store in the variable the content of external textual file (more on this later!);
-* Few examples of built-in **Bash** variables which are always set to some values: **HOME**, **SHELL**, **PATH**, etc. (more on this later!);
+* The lifetime of variable is by default limited to the terminal session in which you have defined it. But you can make its existence persistent in any new terminal you open (i.e. in your _environment_) by adding its declaration to the very special **~/.bashrc** file (more on this in the moment!);
+* It is possible to store in the variable the output of some command, and then manipulate it programmatically;
+* It is possible to store in the variable the content of external textual file;
+* Few examples of built-in **Bash** variables which are always set to some values: **HOME**, **SHELL**, **PATH**, etc. (more on this later!).
 
 Now that we have covered the very basics of commands and variables, let's see how we can develop the first **Bash** scripts. In order to achieve that, the very first step is to learn how to edit the file in the terminal. 
 
