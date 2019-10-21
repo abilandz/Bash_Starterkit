@@ -749,10 +749,10 @@ In order to illustrate how an arbitrary executable (e.g. compiled C++ code) can 
 In general, each file or directory in **Linux** has 3 kind of timestamps:
 
 - **Access** --- the last time the file was read
-**Modify** --- the last time the file was modified (content has been modified)
+**Modify** --- the last time the file was modified (i.e. the file content has been modified)
 **Change** --- the last time meta data of the file was changed (e.g. permissions)
 
-These 3 timestamps are not an overkill, in fact they enable a lot of very powerful features when searching for specific files or directories in the file system. For instance, by using them, it is possible to list names of all files modified within last day, to delete all files which were not accessed for more than 1 year, etc. (more on this later).
+These 3 timestamps are not an overkill, in fact they enable a lot of very powerful features when searching for specific files or directories in the file system. For instance, by using them, it is possible to list names of all files modified within last day, to delete all files which were not accessed for more than 1 year, etc.
 
 In addition, each file or directory in Linux has 3 levels of ownership:
 
@@ -765,7 +765,7 @@ File ownership becomes extremely handy in combination with file permissions, whe
 Finally, each file in Linux has 3 levels of permissions (access rights):
 
 -  **read (r)** --- file can be read
-**write (w)** --- file can be written to (i.e. modified)
+**write (w)** --- file can be written to (i.e. its content can be modified)
 **execute (x)** --- file is executable (i.e. program or binary)
 
 For instance, when you execute
@@ -803,7 +803,9 @@ With this version, all group members to which your account belongs to (```g```) 
 chmod u+x someFile.txt
 ```
 With this version, your file ```someFile.txt``` is declared to be an executable and only you as a user (```u```) can (```+```) execute it (```x```). Remember that only the files which are executables are taken into account by **Bash** when searching through the content of directories in **PATH** variable. Therefore, when making your own **Linux** command, two formal aspects must be always met:
+
 1. directory containing your executable must be included in **PATH**; 
+
 2. your executable must have ```x``` permission.
 
 As the final example:
