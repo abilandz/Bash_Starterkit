@@ -161,7 +161,7 @@ where we use notation ```< ... >``` just as a placeholder. This is the right mom
 
 Let's look at them one by one...
 
-* **<command-name\>** : Whatever you type first in the terminal, i.e. before the next empty character is being encountered on terminal input, **Bash** is trying to interpret as some known **Linux** command, **Bash** key-word, etc. In general, **<command-name\>** can stand for one of the following items:
+* ```<command-name>``` : Whatever you type first in the terminal, i.e. before the next empty character is being encountered on terminal input, **Bash** is trying to interpret as some known **Linux** command, **Bash** key-word, etc. In general, **<command-name\>** can stand for one of the following items:
 
 	1) **Linux** command (i.e. system-wide executable or binary) --- example:  **cat**
 	2) **Bash**  built-in command --- example: **echo**
@@ -170,7 +170,7 @@ Let's look at them one by one...
 	5) function
 	6) script
 
-* **<option(s)\>** : Options (or flags) are used to modify the default behaviour of command. Options are indicated either with:
+* ```<option(s)>``` : Options (or flags) are used to modify the default behaviour of command. Options are indicated either with:
 
 	1) **-** (single dash) followed by single character(s), or
 	2)  **-\-** (two consecutive dashes) followed by a more descriptive explanation of what needs to be modified.
@@ -219,7 +219,7 @@ The first page of a rather lengthy output could look like:
  
 As you can see, even simple commands, like **date**, can have an extensive documentation and a lot of options. It is impossible to memorize all options for all commands, therefore usage of **help** and **man** is needed almost on a daily basis. 
 
-* **<arguments\>** : This is simple, sometimes you want your command to be executed in one go on multiple arguments. For instance, we can make an empty file in the current working directory by using the **touch** command:
+* ```<arguments>``` : This is simple, sometimes you want your command to be executed in one go on multiple arguments. For instance, we can make an empty file in the current working directory by using the **touch** command:
 
 ```linux
 touch file_1.log
